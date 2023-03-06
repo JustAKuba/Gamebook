@@ -6,5 +6,13 @@ public class Player extends Character{
         super(name, health, strength, defense, wallet);
     }
 
+    //GETTERS AND SETTERS//
 
+    public void setEquippedWeapon(Weapon equippedWeapon) {
+        this.equippedWeapon = equippedWeapon;
+    }
+
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
 }
