@@ -32,6 +32,9 @@ public class Log {
                     case INFO:
                         write("[Info]: " + text);
                         break;
+                    case DEBUG:
+                        write("[Debug]: " + text);
+                        break;
                 }
                 break;
         }
@@ -53,7 +56,9 @@ public class Log {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-
+    public static void debug(String text) {
+        log("", text, LogType.DEBUG, LogFormat.DEBUG);
     }
 }
