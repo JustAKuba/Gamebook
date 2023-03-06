@@ -1,4 +1,4 @@
-public class Item {
+public class Item extends GameObject {
     //Declare variables
     private String name;
     private int value;
