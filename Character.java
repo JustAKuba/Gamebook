@@ -9,6 +9,7 @@ public abstract class Character {
     private int strength;
     private int defense;
     private String description;
+    private int wallet;
 
     private List<Item> inventory = new ArrayList<Item>();
 
@@ -19,6 +20,7 @@ public abstract class Character {
         this.health = health;
         this.strength = strength;
         this.defense = defense;
+        this.wallet = wallet;
 
 
     }
@@ -30,6 +32,10 @@ public abstract class Character {
         return description;
     }
 
+    //Create method to get wallet
+    public int getWallet() {
+        return wallet;
+    }
     //Create method to get defense
     public int getDefense() {
         return defense;
@@ -81,6 +87,16 @@ public abstract class Character {
         inventory = i;
         Log.log("", name + " set inventory to " + i, LogType.DEBUG, LogFormat.INFO);
     }
+    //Create method to set wallet
+    public void setWallet(int w) {
+        wallet = w;
+        Log.log("", getObjectIdentity() + " set wallet to " + w, LogType.DEBUG, LogFormat.INFO);
+    }
+    //Create method to get wallet
+    public void getWallet(int w) {
+        wallet = w;
+        Log.log("", getObjectIdentity() + " set wallet to " + w, LogType.DEBUG, LogFormat.INFO);
+    }
     //Create method to return string
     public String toString() {
         return name + " " + health + " " + strength + " " + defense + " " + description + " " + inventory;
@@ -104,6 +120,18 @@ public abstract class Character {
 
         inventory.add(item);
         Log.log("", name + " added item " + item.getName(), LogType.DEBUG, LogFormat.INFO);
+    }
+
+    //Create method to add money to wallet
+    public void addWallet(int amount) {
+        wallet += amount;
+        Log.log("", getObjectIdentity() + " added " + amount + " to his wallet, new wallet: " + wallet, LogType.DEBUG, LogFormat.INFO);
+    }
+
+    //Create method to remove money from wallet
+    public void removeWallet(int amount) {
+        wallet -= amount;
+        Log.log("", getObjectIdentity() + " removed " + amount + " from his wallet, new wallet: " + wallet, LogType.DEBUG, LogFormat.INFO);
     }
 
     //Create method to remove item from inventory
