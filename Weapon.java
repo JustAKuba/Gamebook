@@ -4,16 +4,18 @@ public abstract class Weapon extends Item {
     private int durability;
     private int maxDurability;
     private int weight;
-    private int value;
+    private int range;
+
 
     public Weapon(String name, int damageMultiplier, int durability, int weight, int value) {
-        super(name);
+        super(name, value);
         this.name = name;
         this.damageMultiplier = damageMultiplier;
         this.durability = durability;
         this.maxDurability = durability;
         this.weight = weight;
-        this.value = value;
+        this.setValue(value);
+        this.range = range;
     }
 
     //GETTERS AND SETTERS//
@@ -38,10 +40,6 @@ public abstract class Weapon extends Item {
         this.weight = weight;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-    }
-
     public String getName() {
         return name;
     }
@@ -62,7 +60,4 @@ public abstract class Weapon extends Item {
         return weight;
     }
 
-    public int getValue() {
-        return value;
-    }
 }

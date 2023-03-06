@@ -1,8 +1,9 @@
 public class Item {
     //Declare variables
     private String name;
+    private int value;
     //Declare constructor with name
-    public Item(String name) {
+    public Item(String name, int value) {
         this.name = name;
         this.value = value;
 
