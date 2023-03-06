@@ -28,11 +28,12 @@ public class Location extends GameObject{
                 // The merchant will be weaponsmith, so he will have weapons
 
                 // Add merchant to location
-                this.characterEnters(new Merchant("", 100, 10, 10, 100));
+                Merchant merchant = new Merchant("", 100, 10, 10, 100);
+                this.characterEnters(merchant);
                 // Add random items to merchant's inventory with random stats, but not too high
                 for(int i = 0; i < Math.random(); i++) {
-                    charactersInLocation.get(0).addItem(new MeleeWeapon(false,"", 0,0,0,0) {
-                    });
+                    MeleeWeapon newWeapon = new MeleeWeapon("", 0,0,0,0);
+                    merchant.addItem(newWeapon);
                 }
                 break;
             case CASTLE:

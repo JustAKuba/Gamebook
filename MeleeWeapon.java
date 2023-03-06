@@ -6,7 +6,7 @@
  */
 
 public class MeleeWeapon extends Weapon{
-    public MeleeWeapon(boolean custom,String name, int damageMultiplier, int durability, int weight, int value) {
+    public MeleeWeapon(String name, int damageMultiplier, int durability, int weight, int value) {
         super(name, damageMultiplier, durability, weight, value);
     }
 

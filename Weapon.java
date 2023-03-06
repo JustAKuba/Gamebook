@@ -10,20 +10,19 @@ public abstract class Weapon extends Item {
 
     public Weapon(String name, int damageMultiplier, int durability, int weight, int value) {
         super(name, value);
+        this.custom = true;
+        this.name = name;
+        this.damageMultiplier = damageMultiplier;
+        this.durability = durability;
+        this.maxDurability = durability;
+        this.weight = weight;
+        this.setValue(value);
 
         // If custom not true, load variables from input, else random generate it
         // Price should make sense in relation to durability and damage
-        if (custom) {
-            Log.debug(this.getObjectIdentity() +" custom");
-            this.custom = true;
-            this.name = name;
-            this.damageMultiplier = damageMultiplier;
-            this.durability = durability;
-            this.maxDurability = durability;
-            this.weight = weight;
-            this.setValue(value);
-        } else {
+        if (name == "") {
             Log.debug(this.getObjectIdentity() +" not custom");
+
             this.custom = false;
             this.name = this.generateName();
             this.damageMultiplier = (int) (Math.random() * 10) + 1;
@@ -31,6 +30,8 @@ public abstract class Weapon extends Item {
             this.maxDurability = this.durability;
             this.weight = (int) (Math.random() * 10) + 1;
             this.setValue((int) (Math.random() * 100) + 1);
+        } else {
+            Log.debug(this.getObjectIdentity() +" custom");
         }
     }
 
