@@ -2,8 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Create abstract class Character
-public abstract class Character {
-    //Declare variables
+public abstract class Character extends GameObject {
     private String name;
     private int health;
     private int strength;
@@ -14,7 +13,7 @@ public abstract class Character {
     private List<Item> inventory = new ArrayList<Item>();
 
     //Create constructor
-    public Character(String name, int health, int strength, int defense) {
+    public Character(String name, int health, int strength, int defense, int wallet) {
         //Set variables
         this.name = name;
         this.health = health;
@@ -22,10 +21,15 @@ public abstract class Character {
         this.defense = defense;
         this.wallet = wallet;
 
-
+        //Log
+        Log.log("", this.getClass() + " named: " + getObjectIdentity(), LogType.DEBUG, LogFormat.INFO);
     }
 
     //GETTERS AND SETTERS//
+
+    public String getObjectIdentity() {
+        return name + "(" + objectID + ")";
+    }
 
     //Create abstract method TODO: Implement when i know
     public String about() {
@@ -112,14 +116,14 @@ public abstract class Character {
     //Create method to lower health
     public void lowerHP(int damage) {
         health -= damage;
-        Log.log("", name + " took " + damage + " damage, remaining HP:" + health + ", defense:" + defense, LogType.DEBUG, LogFormat.INFO);
+        Log.log("", getObjectIdentity() + " took " + damage + " damage, remaining HP:" + health + ", defense:" + defense, LogType.DEBUG, LogFormat.INFO);
     }
 
     //Create method to add item to inventory
     public void addItem(Item item) {
 
         inventory.add(item);
-        Log.log("", name + " added item " + item.getName(), LogType.DEBUG, LogFormat.INFO);
+        Log.log("", getObjectIdentity() + " added item " + item.getObjectIdentity() + " to his inventory", LogType.DEBUG, LogFormat.INFO);
     }
 
     //Create method to add money to wallet
@@ -137,16 +141,24 @@ public abstract class Character {
     //Create method to remove item from inventory
     public void removeItem(Item item) {
         inventory.remove(item);
-        Log.log("", name + " removed item " + item.getName(), LogType.DEBUG, LogFormat.INFO);
+        Log.log("", getObjectIdentity()+ " removed item " + item.getObjectIdentity(), LogType.DEBUG, LogFormat.INFO);
     }
 
     //Create method to say text
     public void say(String text) {
         Log.log( name, text, LogType.PRODUCTION, LogFormat.SPEECH);
-        Log.log("", name + " said " + text, LogType.DEBUG, LogFormat.INFO);
+        Log.log("", getObjectIdentity() + " said \"" + text + "\"", LogType.DEBUG, LogFormat.INFO);
     }
 
-    public void giveDamage(Character defender, Weapon weapon) {
+    public void giveDamage(Character defender) {
+        //If this character is a ComputerDrivenCharacter, get random weapon from inventory, else get equipped weapon
+        Weapon weapon;
+        if (this instanceof ComputerDrivenCharacter) {
+            weapon = ((ComputerDrivenCharacter) this).getRandomWeapon();
+        } else {
+            weapon = ((Player) this).getEquippedWeapon();
+        }
+
         double multiplier;
         String weaponName;
         if (weapon == null) {
