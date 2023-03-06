@@ -2,10 +2,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComputerDrivenCharacter extends Character{
-    public ComputerDrivenCharacter(String name, int health, int strength, int defense, double attackRating) {
-        super(name, health, strength, defense);
+
+    //Speech lines list
+    private List<String> randomSpeechLines = new ArrayList<String>();
+
+    public ComputerDrivenCharacter(String name, int health, int strength, int defense, int wallet) {
+        super(name, health, strength, defense , wallet);
     }
 
+    //GETTERS AND SETTERS//
+
+    //Get speech lines
+    public List<String> getRandomSpeechLines() {
+        return randomSpeechLines;
+    }
+    //Set speech lines
+    public void setRandomSpeechLines(List<String> radnomSpeechLines) {
+        this.randomSpeechLines = radnomSpeechLines;
+    }
+
+
+    //METHODS//
     //Get random weapon from inventory (inventory has also non-weapon items), character has inventory
     public Weapon getRandomWeapon() {
         List<Weapon> weapons = new ArrayList<Weapon>();
@@ -19,6 +36,19 @@ public class ComputerDrivenCharacter extends Character{
         } else {
             return null;
         }
+    }
+    //Get random speech line
+    public String getRandomSpeechLine() {
+        if (randomSpeechLines.size() > 0) {
+            return randomSpeechLines.get((int) (Math.random() * randomSpeechLines.size()));
+        } else {
+            Log.log("", "No speech lines for " + this.getName() + ", but speech requested", LogType.DEBUG, LogFormat.WARNING);
+            return null;
+        }
+    }
+    //Add speech line
+    public void addSpeechLine(String speechLine) {
+        randomSpeechLines.add(speechLine);
     }
 
 
