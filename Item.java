@@ -1,3 +1,11 @@
+/*
+ * Class Item represents an item that can be picked up and used by a character
+ * Class is a subclass of GameObject
+ * Class is a superclass of Weapon
+ * Class has name and value
+ * @author:  JustAKuba
+ */
+
 public class Item extends GameObject {
     //Declare variables
     private String name;

@@ -1,3 +1,7 @@
+/*
+ * Enum for log format
+ * @author:  JustAKuba
+ */
 public enum LogFormat {
     ERROR,
     WARNING,

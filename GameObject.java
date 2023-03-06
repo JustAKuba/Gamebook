@@ -1,7 +1,9 @@
 /*
-Base class for all game objects
-Implemets creation logging
-Implements object ID
+ * Base class for all game objects.
+ * All game objects have an ID.
+ * All game objects have a name.
+ * Creates a log entry when created.
+ * @author:  JustAKuba
  */
 
 public abstract class GameObject {

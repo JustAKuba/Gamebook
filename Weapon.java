@@ -5,17 +5,33 @@ public abstract class Weapon extends Item {
     private int maxDurability;
     private int weight;
     private int range;
+    private boolean custom;
 
 
     public Weapon(String name, int damageMultiplier, int durability, int weight, int value) {
         super(name, value);
-        this.name = name;
-        this.damageMultiplier = damageMultiplier;
-        this.durability = durability;
-        this.maxDurability = durability;
-        this.weight = weight;
-        this.setValue(value);
-        this.range = range;
+
+        // If custom not true, load variables from input, else random generate it
+        // Price should make sense in relation to durability and damage
+        if (custom) {
+            Log.debug(this.getObjectIdentity() +" custom");
+            this.custom = true;
+            this.name = name;
+            this.damageMultiplier = damageMultiplier;
+            this.durability = durability;
+            this.maxDurability = durability;
+            this.weight = weight;
+            this.setValue(value);
+        } else {
+            Log.debug(this.getObjectIdentity() +" not custom");
+            this.custom = false;
+            this.name = this.generateName();
+            this.damageMultiplier = (int) (Math.random() * 10) + 1;
+            this.durability = (int) (Math.random() * 100) + 1;
+            this.maxDurability = this.durability;
+            this.weight = (int) (Math.random() * 10) + 1;
+            this.setValue((int) (Math.random() * 100) + 1);
+        }
     }
 
     //GETTERS AND SETTERS//
@@ -58,6 +74,18 @@ public abstract class Weapon extends Item {
 
     public int getWeight() {
         return weight;
+    }
+
+    // Methods
+    // Generate random weapon name
+    public String generateName() {
+        String[] meleeWeaponFirstParts = {"Blood", "Doom", "Void", "Storm", "Shadow", "Fire", "Thunder", "Ice", "Soul", "Death", "Holy", "Blade", "Sword", "Demon", "Dragon", "Witch", "War", "Iron", "Chaos", "Light"};
+        String[] meleeWeaponSecondParts = {"fang", "strike", "thorn", "edge", "breaker", "slayer", "cleaver", "rend", "shatter", "reaper", "crusher", "piercer", "maul", "pummel", "razor", "blade", "crimson", "eternity", "executioner", "warrior"};
+
+        String name = meleeWeaponFirstParts[(int) (Math.random() * meleeWeaponFirstParts.length)];
+        String surname = meleeWeaponSecondParts[(int) (Math.random() * meleeWeaponSecondParts.length)];
+        Log.debug(name + " " + surname);
+        return name + " " + surname;
     }
 
 }

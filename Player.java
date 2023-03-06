@@ -1,3 +1,8 @@
+/*
+ * Class of player, has variable (Weapon)equippedWeapon
+ * @author:  JustAKuba
+ */
+
 public class Player extends Character{
 
     private Weapon equippedWeapon;

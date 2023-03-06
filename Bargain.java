@@ -1,3 +1,10 @@
+/*
+ * Class Bargain represents a transaction between two characters
+ * Class is a subclass of GameObject
+ * System gives one character an opportunity to sell items to another character for money
+ * @author:  JustAKuba
+ */
+
 import java.util.ArrayList;
 
 public class Bargain extends GameObject {

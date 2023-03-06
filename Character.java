@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+    * Class Character is abstract class for all characters in game
+    * Implements basic character stats, inventory, wallet and actions
+    *
+    @Author: JustAKuba
+ */
 //Create abstract class Character
 public abstract class Character extends GameObject {
     private String name;
@@ -20,6 +25,9 @@ public abstract class Character extends GameObject {
         this.strength = strength;
         this.defense = defense;
         this.wallet = wallet;
+        if (this.name == null || this.getClass() != Player.class) {
+            this.name =  this.generateName();
+        }
 
         //Log
         Log.log("", this.getClass() + " named: " + getObjectIdentity(), LogType.DEBUG, LogFormat.INFO);
@@ -44,7 +52,6 @@ public abstract class Character extends GameObject {
     public int getDefense() {
         return defense;
     }
-
     //Create method to get name
     public String getName() {
         return name;
@@ -108,6 +115,16 @@ public abstract class Character extends GameObject {
 
     //OTHER METHODS//
 
+    //Methods to affect character
+    // Name constructor
+    public String generateName() {
+        String[] names = {"Zev", "Lirien", "Nimue", "Kaelthas", "Thorn", "Xylander", "Llothien", "Nimara", "Zaltarish", "Drizzt", "Thranduil", "Gromph", "Vhaeraun", "Kiaransalee", "Eilistraee", "Zin-carla", "Felyndiira", "Vartan", "Oussana", "Zebeyana"};
+        String[] surnames = {"Aryvandaar", "Blaeruehryn", "Covathara", "Duskryn", "Faenella", "Godeep", "Ilphukiir", "Jhalavar", "Kethendil", "Lhalabar", "Mylyl", "Nizzre", "Oussana", "Pharn", "Q'Noss", "Rilynath", "Ssambra", "Tuin'Tarl", "Uloavae", "Xun'Antis"};
+
+        String name = names[(int) (Math.random() * names.length)];
+        String surname = surnames[(int) (Math.random() * surnames.length)];
+        return name + " " + surname;
+    }
     //Create method to check if character is alive
     public boolean isAlive() {
         return health > 0;
@@ -173,10 +190,7 @@ public abstract class Character extends GameObject {
         defender.lowerHP((int) damage);
         Log.log("", name + " dealt " + damage + " damage to " + defender.getName() + ", base damage: " + strength + ", multiplier: " + multiplier + " with weapon " + weaponName, LogType.DEBUG, LogFormat.INFO);
 
-        //TODO: Implement when weapons done
     }
-    //Create method to get damage
 
-    //Create method to attack TODO: Implement when weapons done
 
 }

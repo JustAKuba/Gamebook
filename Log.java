@@ -1,3 +1,12 @@
+/*
+ * Class Log is used to log events in the game
+ * Class takes name of the object that is logging, text to log, type of log and format of log
+ * Class has 4 formats of logs: PRODUCTION, DEBUG, ERROR and WARNING for type DEBUG
+ * Class has 4 formats of logs: NARATOR, SPEECH, RESULT and PRODUCTION for type PRODUCTION
+ * Class has 2 types of logs: PRODUCTION and DEBUG
+ * @author:  JustAKuba
+ */
+
 import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
