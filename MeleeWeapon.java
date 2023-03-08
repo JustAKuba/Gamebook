@@ -6,8 +6,16 @@
  */
 
 public class MeleeWeapon extends Weapon{
-    public MeleeWeapon(String name, int damageMultiplier, int durability, int weight, int value) {
-        super(name, damageMultiplier, durability, weight, value);
+    private String name;
+    private int damageMultiplier;
+    private int durability;
+    private int maxDurability;
+    private int weight;
+
+    public MeleeWeapon(String name,int value) {
+        super(value);
     }
+
+
 
 }

@@ -8,39 +8,18 @@ public abstract class Weapon extends Item {
     private boolean custom;
 
 
-    public Weapon(String name, int damageMultiplier, int durability, int weight, int value) {
-        super(name, value);
-        this.custom = true;
-        this.name = name;
-        this.damageMultiplier = damageMultiplier;
-        this.durability = durability;
-        this.maxDurability = durability;
-        this.weight = weight;
-        this.setValue(value);
-
-        // If custom not true, load variables from input, else random generate it
-        // Price should make sense in relation to durability and damage
-        if (name == "") {
-            Log.debug(this.getObjectIdentity() +" not custom");
-
-            this.custom = false;
-            this.name = this.generateName();
-            this.damageMultiplier = (int) (Math.random() * 10) + 1;
-            this.durability = (int) (Math.random() * 100) + 1;
-            this.maxDurability = this.durability;
-            this.weight = (int) (Math.random() * 10) + 1;
-            this.setValue((int) (Math.random() * 100) + 1);
-        } else {
-            Log.debug(this.getObjectIdentity() +" custom");
-        }
+    public Weapon(int value) {
+        super(value);
+        this.custom = false;
+        this.setName(this.generateName());
+        this.damageMultiplier = (int) (Math.random() * 10) + 1;
+        this.durability = (int) (Math.random() * 100) + 1;
+        this.maxDurability = this.durability;
+        this.weight = (int) (Math.random() * 10) + 1;
+        this.setValue((int) (Math.random() * 100) + 1);
     }
 
     //GETTERS AND SETTERS//
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setDamageMultiplier(int damageMultiplier) {
         this.damageMultiplier = damageMultiplier;
     }
@@ -85,7 +64,7 @@ public abstract class Weapon extends Item {
 
         String name = meleeWeaponFirstParts[(int) (Math.random() * meleeWeaponFirstParts.length)];
         String surname = meleeWeaponSecondParts[(int) (Math.random() * meleeWeaponSecondParts.length)];
-        Log.debug(name + " " + surname);
+
         return name + " " + surname;
     }
 

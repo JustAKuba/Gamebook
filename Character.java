@@ -26,7 +26,7 @@ public abstract class Character extends GameObject {
         this.defense = defense;
         this.wallet = wallet;
         if (this.name == null || this.getClass() != Player.class) {
-            this.name =  this.generateName();
+            this.setName(this.generateName());
         }
 
         //Log

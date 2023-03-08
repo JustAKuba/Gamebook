@@ -6,7 +6,7 @@
  * @author:  JustAKuba
  */
 
-public class Item extends GameObject {
+public abstract class Item extends GameObject {
     //Declare variables
     private String name;
     private int value;
@@ -14,10 +14,11 @@ public class Item extends GameObject {
     public Item(String name, int value) {
         this.name = name;
         this.value = value;
+    }
 
-
-        //Log
-        Log.log("", this.getClass() + " named: " + name + "(" + objectID + ")", LogType.DEBUG, LogFormat.INFO);
+    public Item(int value) {
+        this.value = value;
+        //this.name ="";
     }
 
     //GETTERS AND SETTERS//
@@ -28,6 +29,7 @@ public class Item extends GameObject {
 
     //Create method to get name
     public String getName() {
+        Log.log("", this.getClass() + " named: " + name + "(" + objectID + ")", LogType.DEBUG, LogFormat.INFO);
         return name;
     }
     //Create method to get value
@@ -37,11 +39,11 @@ public class Item extends GameObject {
     //Create method to set name
     public void setName(String n) {
         name = n;
-        Log.log("", name + " set name to " + n, LogType.DEBUG, LogFormat.INFO);
+        Log.log("", this.getClass() + "("+ this.objectID + ")" + " set name to " + n, LogType.DEBUG, LogFormat.INFO);
     }
     //Create method to set value
     public void setValue(int v) {
         value = v;
-        Log.log("", name + " set value to " + v, LogType.DEBUG, LogFormat.INFO);
+        Log.log("", this.getObjectIdentity() + " set value to " + v, LogType.DEBUG, LogFormat.INFO);
     }
 }
