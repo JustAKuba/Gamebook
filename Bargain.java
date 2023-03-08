@@ -65,6 +65,37 @@ public class Bargain extends GameObject {
         items.remove(item);
     }
 
+    public void menuItems() {
+        ArrayList<Decision> decisions = new ArrayList<Decision>();
+
+
+        for (Item item : items) {
+            //Log.log("", item.getName() + " for price of " + item.getValue() + " Golds", LogType.PRODUCTION, LogFormat.NARATOR);
+        }
+
+        if (buyer instanceof Player) {
+            for (Item item : owner.getInventory()) {
+                decisions.add(new Decision(item.getName() + " for price of " + item.getValue() + " Golds", () -> offerItem(item)));
+            }
+        } else {
+            for (Item item : buyer.getInventory()) {
+                decisions.add(new Decision(item.getName() + " for price of " + item.getValue() + " Golds", () -> offerItem(item)));
+            }
+        }
+        decisions.add(new Decision("I'm done", () -> evaluateBargain()));
+        decisions.add(new Decision("I changed my mind", () -> cancelBargain()));
+
+
+
+        Menu bargainMenu = new Menu(decisions);
+        if (buyer instanceof Player) {
+            bargainMenu.setDescription("What would you like to get?");
+        } else {
+            bargainMenu.setDescription("What would you like to sell?");
+        }
+
+    }
+
     public void evaluateBargain() {
         //Count total value of items
         int totalValue = 0;
@@ -90,6 +121,12 @@ public class Bargain extends GameObject {
             owner.setWallet(owner.getWallet() + totalValue);
 
         }
+    }
+
+    public void cancelBargain() {
+        Log.log("", "Bargain was cancelled", LogType.PRODUCTION, LogFormat.NARATOR);
+        Log.log("", this.getObjectIdentity() + " cancelled", LogType.DEBUG, LogFormat.INFO);
+        return;
     }
 
     public void debug() {

@@ -67,7 +67,7 @@ public abstract class Character extends GameObject {
     //Create method to set name
     public void setName(String n) {
         name = n;
-        Log.log("", name + " set name to " + n, LogType.DEBUG, LogFormat.INFO);
+        Log.log("", this.getObjectIdentity() + " set name to " + n, LogType.DEBUG, LogFormat.INFO);
     }
     //Create method to set health
     public void setHealth(int h) {
